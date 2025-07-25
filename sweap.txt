@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+// Function to swap using call-by-value
+void swapValue(int a, int b) {
+    int temp = a;
+    a = b;
+    b = temp;
+    printf("Inside swapValue - a: %d, b: %d (swapped inside function only)\n", a, b);
+}
+
+// Function to swap using call-by-reference (pointers)
+void swapRef(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+    // This affects the original variables
+}
+
+int main() {
+    int x, y;
+
+    printf("Enter two integers: ");
+    if (scanf("%d %d", &x, &y) != 2) {
+        printf("❌ Invalid input. Please enter two integers.\n");
+        return 1;
+    }
+
+    printf("\n--- Before Swapping ---\n");
+    printf("x: %d, y: %d\n", x, y);
+
+    // Call-by-value demonstration
+    swapValue(x, y);
+    printf("After swapValue (call-by-value): x: %d, y: %d (no change in main)\n", x, y);
+
+    // Call-by-reference demonstration
+    swapRef(&x, &y);
+    printf("After swapRef (call-by-reference): x: %d, y: %d (changed in main)\n", x, y);
+
+    return 0;
+}
